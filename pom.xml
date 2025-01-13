@@ -25,10 +25,10 @@
   </licenses>
 
   <properties>
+    <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
+    <jenkins.baseline>2.462</jenkins.baseline>
     <!-- Baseline Jenkins version you use to build the plugin. Users must have this version or newer to run. -->
-    <jenkins.version>2.462.3</jenkins.version>
-    <!-- Java Level to use. Java 8 required when using core >= 1.612 -->
-    <java.level>8</java.level>
+    <jenkins.version>${jenkins.baseline}.3</jenkins.version>
     <!-- Jenkins Test Harness version you use to test the plugin. -->
     <!-- For Jenkins version >= 1.580.1 use JTH 2.x or higher. -->
     <!-- Other properties you may want to use:
@@ -51,11 +51,22 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+    <connection>scm:git:https://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
     <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
     <tag>anchore-container-scanner-3.1.1</tag>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.jenkins.tools.bom</groupId>
+        <artifactId>bom-${jenkins.baseline}.x</artifactId>
+        <version>3893.v213a_42768d35</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <!--
     <scm>
       <connection>scm:git:https://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
@@ -88,7 +99,6 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>structs</artifactId>
-      <version>338.v848422169819</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -98,7 +108,6 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>credentials</artifactId>
-      <version>1381.v2c3a_12074da_b_</version>
     </dependency>
   </dependencies>
 
